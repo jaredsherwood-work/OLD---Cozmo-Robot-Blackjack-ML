@@ -41,10 +41,7 @@ final_df['dealer_card'].replace({'A':11, 'J':10, 'Q':10, 'K':10}, inplace=True)
 X_df = np.array(final_df[feature_list]).astype(np.float32)
 
 #given the dealer card, the player's hand, and their action (hit or stay) was that the correct choice?
-#for my model predition, i will default to my input being the dealer card, the player's hand, and they hit
-#the question will be was it the correct decision.  if so, then cozmo should hit.  if not, then cozmo should stay.
-#again, your reasoning might be different.  again, make sure that your data is in a form that can
-#be converted to a tensor
+
 
 #y_df = final_df['outcome']
 y_df = np.array(final_df['outcome']).astype(np.float32).reshape(-1,1)
@@ -95,7 +92,7 @@ pred_Y_test = model.predict(X_test)
 #also get the actual results so we can compare
 actuals = y_test
 
-#evaluate the model...check out the vaerious metrics used to evaluate a model...you can do your own search
+#evaluate the model...check out the vaerious metrics used to evaluate a model...
 #   https://neptune.ai/blog/performance-metrics-in-machine-learning-complete-guide
 
 fpr, tpr, threshold = metrics.roc_curve(actuals, pred_Y_test)
